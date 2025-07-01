@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'docker build -t your-dockerhub-username/flask-app ./app'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f kubernetes/'
+            }
+        }
+    }
+}
